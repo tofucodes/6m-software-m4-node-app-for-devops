@@ -5,15 +5,17 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: cimg/node:16.10
-    steps:
-      - checkout
-      - node/install-packages:
+  docker:
+    - image: cimg/node:16.10
+  steps:
+    - checkout
+    - node/install-packages:
         pkg-manager: npm
-      - run: |
+    - run: |
         echo "Installing dependencies..."
         npm install
   test:
   optional_publish:
+  
+
   
