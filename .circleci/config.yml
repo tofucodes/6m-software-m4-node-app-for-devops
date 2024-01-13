@@ -30,13 +30,11 @@ jobs:
     steps:
         - checkout
         #Log into dockerhub
-        - run: |
-            echo "Publishing image to registry..." |
-        - run: |
+        - run: 
             docker build -t tofucodes/cimg/node:16.10:latest .
-        - run: |
+        - run: 
             docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-        - run: |
+        - run: 
             docker push tofucodes/cimg/node:16.10:latest
 
   # Assignment
