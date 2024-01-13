@@ -27,9 +27,9 @@ jobs:
   publish:
     docker:
         - image: cimg/node:16.10
-          auth:
-            username: $DOCKER_USERNAME
-            password: $DOCKER_PASSWORD
+            auth:
+              username: $DOCKER_USERNAME
+              password: $DOCKER_PASSWORD
     steps:
       - checkout
       #Log into dockerhub
