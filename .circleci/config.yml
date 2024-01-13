@@ -31,8 +31,7 @@ jobs:
       - checkout
       #Log into dockerhub
       - run: |
-          echo "Publishing image to registry..." | echo "$DOCKER_PASSWORD" | 
-          docker login -u "$DOCKER_USERNAME" --password-stdin
+          echo "Publishing image to registry..." | echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - run: |
           docker build -t tofucodes/test-image:test .
       - run: |
@@ -50,8 +49,7 @@ workflows:
           requires:
             - build
       - publish:
-          requires:
-            - build
+          requires:            
             - test
 
 
