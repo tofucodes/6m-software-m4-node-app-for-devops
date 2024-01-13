@@ -24,18 +24,19 @@ jobs:
       - run: |
           echo "Running tests..."
           npm test
-publish:
-  docker:
-      - image: cimg/node:16.10
-    steps:
-      - checkout
-      - node/install-packages:
-        pkg-manager: npm
-      - run: |
-          echo "Publishing image..." | echo "$DOCKER_PASSWORD" | 
-          docker login -u "$DOCKER_USERNAME" --password-stdin
-          docker build -t tofucodes/test-image:test .
-          docker push tofucodes/test-image:test
+  publish:
+    docker:
+        - image: cimg/node:16.10
+      steps:
+        - checkout
+        #Log into dockerhub
+        - run: |
+            echo "Publishing image to registry..." | echo "$DOCKER_PASSWORD" | 
+            docker login -u "$DOCKER_USERNAME" --password-stdin
+        - run: |
+            docker build -t tofucodes/test-image:test .
+        - run: |
+            docker push tofucodes/test-image:test
 
   # Assignment
 
@@ -50,6 +51,7 @@ workflows:
             - build
       - publish:
           requires:
+            - build
             - test
 
 
