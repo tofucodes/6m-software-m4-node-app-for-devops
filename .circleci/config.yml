@@ -12,8 +12,30 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run: |
-          echo "Installing dependencies ..."
+          echo "Installing dependencies..."
           npm install
   test:
+    docker:
+      - image: cimg/node:16.10
+    steps:
+      - checkout
+      - node/install-packages:
+        pkg-manager: npm
+      - run: |
+          echo "Running tests..."
+          npm test
   optional_publish:
+
+  # Assignment
+
+# workflow names need to match above
+# requires in this case means that build needs to happen before test
+  workflows:
+    simple_workflow:
+      jobs:
+        - build
+        - test: 
+          requires:
+            - build
+
   
