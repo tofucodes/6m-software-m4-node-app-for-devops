@@ -24,20 +24,19 @@ jobs:
       - run: |
           echo "Running tests..."
           npm test
-  publish:
-    docker:
-        - image: cimg/node:16.10
-    steps:
-        - checkout
-        #Log into dockerhub
-        - run: 
-            docker build -t tofucodes/cimg/node:16.10 .
-        - run: 
-            docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-        - run: 
-            docker push tofucodes/cimg/node:16.10
 
-  # Assignment
+   publish:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - checkout
+      - docker/check
+      - docker/build:
+          image: tofucodes/cimg/node:16.10
+      - docker/push:
+          image: tofucodes/cimg/node:16.10
+  
+  # Assignmentdoc
 
 # workflow names need to match above
 # requires in this case means that build needs to happen before test
