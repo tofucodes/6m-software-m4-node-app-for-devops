@@ -31,11 +31,11 @@ jobs:
         - checkout
         #Log into dockerhub
         - run: 
-            docker build -t tofucodes/cimg/node:16.10:latest .
+            docker build -t tofucodes/cimg/node:16.10 .
         - run: 
             docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
         - run: 
-            docker push tofucodes/cimg/node:16.10:latest
+            docker push tofucodes/cimg/node:16.10
 
   # Assignment
 
