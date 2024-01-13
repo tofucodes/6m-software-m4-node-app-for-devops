@@ -27,18 +27,17 @@ jobs:
   publish:
     docker:
         - image: cimg/node:16.10
-            auth:
-              username: $DOCKER_USERNAME
-              password: $DOCKER_PASSWORD
     steps:
       - checkout
       #Log into dockerhub
       - run: |
-          echo "Publishing image to registry..." | 
+          echo "Publishing image to registry..." |
+       - run: |
+          docker build -t tofucodes/cimg/node:16.10:latest .
       - run: |
-          docker build -t tofucodes/cimg/node:16.10:test .
+          docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
       - run: |
-          docker push tofucodes/cimg/node:16.10:test
+          docker push tofucodes/cimg/node:16.10:latest
 
   # Assignment
 
