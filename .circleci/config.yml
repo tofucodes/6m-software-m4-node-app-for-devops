@@ -30,12 +30,12 @@ jobs:
 
 # workflow names need to match above
 # requires in this case means that build needs to happen before test
-  workflows:
-    simple_workflow:
-      jobs:
-        - build
-        - test: 
-            requires:
-              - build
+workflows:
+  simple_workflow:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
 
-  
+
